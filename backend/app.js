@@ -5,6 +5,7 @@ const cors = require('cors');
 const { errors } = require('celebrate');
 
 const routes = require('./routes');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT, DB_ADDRESS } = require('./config');
 const { ERROR_SERVER, ERROR_NOT_FOUND } = require('./errors/errorConsts');
@@ -15,9 +16,9 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
-
+app.use(requestLogger);
 app.use(routes);
-
+app.use(errorLogger);
 app.use(errors());
 
 app.use('*', (req, res) => {
