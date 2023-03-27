@@ -60,7 +60,7 @@ export const cardsSlice = createSlice({
     },
     [getAllCards.fulfilled]: (state, action) => {
       return {
-        cardsData: action.payload,
+        cardsData: action.payload.data,
         cardsDataStatus: success,
       };
     },
@@ -117,7 +117,7 @@ export const cardsSlice = createSlice({
       return {
         ...state,
         cardsData: state.cardsData.map((c) =>
-          c._id === action.payload._id ? action.payload : c
+          c._id === action.payload.data._id ? action.payload.data : c
         ),
       };
     },

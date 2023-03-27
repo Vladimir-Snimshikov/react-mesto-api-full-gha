@@ -21,12 +21,10 @@ import { closeAllPopup, selectPopupName } from '../store/popupSlice.js';
 import { addEmail } from '../store/currentUserInfoSlice.js';
 import {
   getUserInfo,
-  selectUserInfoErrorMessage,
   selectUserInfoStatus,
 } from '../store/currentUserInfoSlice.js';
 import {
   getAllCards,
-  selectCardsDataErrormMessage,
   selectCardsDataStatus,
   selectedCardForImgPopup,
 } from '../store/cardsSlice.js';
@@ -49,8 +47,6 @@ function App() {
 
   const userInfoStatus = useSelector(selectUserInfoStatus);
   const cardsDataStatus = useSelector(selectCardsDataStatus);
-  const cardsDataErrormMessage = useSelector(selectCardsDataErrormMessage);
-  const userInfoErrorMessage = useSelector(selectUserInfoErrorMessage);
   const curentPopupName = useSelector(selectPopupName);
 
   useEffect(() => {
@@ -64,8 +60,6 @@ function App() {
       }
       if (userInfoStatus === error || cardsDataStatus === error) {
         setPageLoading(false);
-        console.log(userInfoErrorMessage);
-        console.log(cardsDataErrormMessage);
       }
     }
   }, [loggedIn]);

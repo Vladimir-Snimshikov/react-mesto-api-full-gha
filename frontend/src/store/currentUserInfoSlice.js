@@ -35,15 +35,16 @@ export const currentUserSlice = createSlice({
     addEmail: (state, action) => {
       return {
         ...state,
-        userInfo: { ...state.userInfouse, email: action.payload },
+        userInfo: { ...state.userInfo, email: action.payload },
       };
     },
   },
   extraReducers: {
     [getUserInfo.fulfilled]: (state, action) => {
+      console.log(action.payload.data)
       return {
         ...state,
-        userInfo: { ...state.userInfo, ...action.payload },
+        userInfo: {  ...action.payload.data },
         userInfoStatus: success,
       };
     },
@@ -63,7 +64,7 @@ export const currentUserSlice = createSlice({
     [editUserInfo.fulfilled]: (state, action) => {
       return {
         ...state,
-        userInfo: { ...state.userInfo, ...action.payload },
+        userInfo: { ...state.userInfo, ...action.payload.data },
         userUpdateInfoStatus: success,
       };
     },
@@ -84,7 +85,7 @@ export const currentUserSlice = createSlice({
     [editUserInfoAvatar.fulfilled]: (state, action) => {
       return {
         ...state,
-        userInfo: { ...state.userInfo, ...action.payload },
+        userInfo: { ...state.userInfo, ...action.payload.data },
         userInfoUpdateAvatarStatus: success,
       };
     },

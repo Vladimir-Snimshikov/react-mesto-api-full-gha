@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const { errors } = require('celebrate');
 
 const routes = require('./routes');
@@ -11,7 +12,9 @@ const { ERROR_SERVER, ERROR_NOT_FOUND } = require('./errors/errorConsts');
 mongoose.connect(DB_ADDRESS);
 
 const app = express();
+
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use(routes);
 

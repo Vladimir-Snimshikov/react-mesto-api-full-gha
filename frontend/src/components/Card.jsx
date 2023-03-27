@@ -24,21 +24,25 @@ export default function Card({ card }) {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUserInfo);
   const cardTheLikeErrormMessage = useSelector(selectCardTheLikeErrormMessage);
-  const isLiked = card.likes.some((i) => i._id === userInfo._id);
+  const isLiked = card.likes.some((i) => i === userInfo._id);
+
   const cardLikeButtonClassName = `${cardsLikeImg} ${
     isLiked && cardsLikeImgActive
   }`;
-  const isOwn = card.owner._id === userInfo._id;
+
+  const isOwn = card.owner === userInfo._id;
+
 
   useEffect(() => {
     if (cardTheLikeErrormMessage) {
-      console.log(cardTheLikeErrormMessage);
+
     }
   }, [cardTheLikeErrormMessage]);
 
   function handleCardClick() {
     dispatch(openPopup('imagePopupPopup'));
     dispatch(selectedCardForImgPopup(card));
+
   }
 
   function handleLikeClick() {

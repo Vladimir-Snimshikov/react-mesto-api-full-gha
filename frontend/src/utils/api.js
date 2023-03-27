@@ -13,13 +13,13 @@ class Api {
   }
 
   getUserInfo() {
-    return fetch('https://nomoreparties.co/v1/cohort-54/users/me', {
-      headers: this._headers,
+    return fetch(`${this._url}users/me`, {
+      headers: this._headers(),
     }).then(this._responseProcessing);
   }
 
   getAllCards() {
-    return fetch(`${this._url}cards`, { headers: this._headers }).then(
+    return fetch(`${this._url}cards`, { headers: this._headers() }).then(
       this._responseProcessing
     );
   }
@@ -27,7 +27,7 @@ class Api {
   editProfile(data) {
     return fetch(`${this._url}users/me`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: this._headers(),
       body: JSON.stringify({
         name: data.name,
         about: data.about,
@@ -38,7 +38,7 @@ class Api {
   addCard(data) {
     return fetch(`${this._url}cards`, {
       method: 'POST',
-      headers: this._headers,
+      headers: this._headers(),
       body: JSON.stringify({
         name: data.name,
         link: data.link,
@@ -49,14 +49,14 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._url}cards/${cardId}`, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: this._headers(),
     }).then(this._responseProcessing);
   }
 
   putAvatar(data) {
     return fetch(`${this._url}users/me/avatar`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: this._headers(),
       body: JSON.stringify({
         avatar: data.avatar,
       }),
@@ -66,7 +66,7 @@ class Api {
   toggleLike(cardId, isLiked) {
     return fetch(`${this._url}cards/${cardId}/likes`, {
       method: isLiked ? 'DELETE' : 'PUT',
-      headers: this._headers,
+      headers: this._headers(),
     }).then(this._responseProcessing);
   }
 }
