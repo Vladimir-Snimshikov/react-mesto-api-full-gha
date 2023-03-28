@@ -41,7 +41,6 @@ export const currentUserSlice = createSlice({
   },
   extraReducers: {
     [getUserInfo.fulfilled]: (state, action) => {
-      console.log(action.payload.data)
       return {
         ...state,
         userInfo: {  ...action.payload.data },
