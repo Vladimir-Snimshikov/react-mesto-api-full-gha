@@ -1,5 +1,5 @@
 export const config = {
-  url: 'http://localhost:3000/',
+  url: 'http://api.mesto.project.nomoredomains.work/',
   headers: ()=> {
     const jwt = localStorage.getItem('jwt');
     return {
