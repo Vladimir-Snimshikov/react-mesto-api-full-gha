@@ -1,5 +1,5 @@
 export const config = {
-  url: 'http://localhost:3001/',
+  url: 'http://localhost:3000/',
   headers: ()=> {
     const jwt = localStorage.getItem('jwt');
     return {
