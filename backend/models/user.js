@@ -5,6 +5,7 @@ const {
   defaultUserName,
   defaultUserAbout,
   defaultUserAvatar,
+  checkUrl,
 } = require('../utils/constans');
 
 const userSchema = new mongoose.Schema({
@@ -25,7 +26,7 @@ const userSchema = new mongoose.Schema({
     default: defaultUserAvatar,
     validate: {
       validator(v) {
-        return /^(http|https):\/\/(www\.)?[a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=]+#?$/.test(v);
+        return checkUrl.test(v);
       },
       message: (props) => `${props.value} is not a valid link!`,
     },

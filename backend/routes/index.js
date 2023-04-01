@@ -1,13 +1,12 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
+const { checkUrl } = require('../utils/constans');
 
 const userRoutes = require('./users');
 const cardRoutes = require('./cards');
 const { login, createUser } = require('../controllers/users');
 const auth = require('../middlewares/auth');
-
-router.use('/users', auth, userRoutes);
-router.use('/cards', auth, cardRoutes);
+const ErrorNotFound = require('../errors/ErrorNotFound');
 
 router.post('/signin', celebrate({
   body: Joi.object().keys({
@@ -21,8 +20,15 @@ router.post('/signup', celebrate({
     password: Joi.string().required(),
     name: Joi.string().min(2).max(30),
     about: Joi.string().min(2).max(30),
-    avatar: Joi.string().regex(/^(http|https):\/\/(www\.)?[a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=]+#?$/),
+    avatar: Joi.string().regex(checkUrl),
   }),
 }), createUser);
+
+router.use(auth);
+
+router.use('/users', userRoutes);
+router.use('/cards', cardRoutes);
+
+router.use('*', (req, res, next) => next(new ErrorNotFound('Запрашиваемая страница не найдена')));
 
 module.exports = router;
