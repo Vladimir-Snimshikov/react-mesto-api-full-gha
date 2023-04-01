@@ -29,6 +29,8 @@ router.use(auth);
 router.use('/users', userRoutes);
 router.use('/cards', cardRoutes);
 
-router.use('*', (req, res, next) => next(new ErrorNotFound('Запрашиваемая страница не найдена')));
+router.use('*', (req, res, next) => {
+  next(new ErrorNotFound('Запрашиваемая страница не найдена'));
+});
 
 module.exports = router;
