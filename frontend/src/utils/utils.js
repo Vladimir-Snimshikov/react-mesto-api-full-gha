@@ -1,5 +1,5 @@
 export const config = {
-  url: 'http://localhost:3000/',
+  url: 'https://api.mesto.project.nomoredomains.work/',
   headers: ()=> {
     const jwt = localStorage.getItem('jwt');
     return {
@@ -16,3 +16,4 @@ export const tooltip = {
 };
 
 //'https://api.mesto.project.nomoredomains.work/'
+//'http://localhost:3000/'
