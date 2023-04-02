@@ -2,14 +2,13 @@ const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken');
 
 const User = require('../models/user');
-const { JWT_SECRET } = require('../config');
 
 const ErrorCode = require('../errors/ErrorCode');
 const ErrorNotFound = require('../errors/ErrorNotFound');
 const ErrorDublicate = require('../errors/ErrorDublicate');
 const ErrorAuthorized = require('../errors/ErrorAuthorized');
 
-const { SUCCESS } = require('../utils/constans');
+const { SUCCESS, getJwtSecret } = require('../utils/constans');
 
 // GET /users
 module.exports.getUsers = (req, res, next) => {
@@ -46,7 +45,7 @@ module.exports.login = (req, res, next) => {
       throw new ErrorAuthorized('неверный пароль');
     }))
     .then((user) => {
-      const jwt = jsonwebtoken.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
+      const jwt = jsonwebtoken.sign({ _id: user._id }, getJwtSecret(), { expiresIn: '7d' });
       res.send({ token: jwt });
     })
     .catch(next);

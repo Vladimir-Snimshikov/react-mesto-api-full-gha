@@ -90,7 +90,14 @@ function App() {
       dispatch(addEmail(email));
       setLoggedIn(true);
       navigate('/', { replace: true });
-    });
+    })
+    .catch((err)=> {
+      setInfoTooltip({
+        message: tooltip.messageLoginErr,
+        isOpen: true,
+        error: true,
+      });
+    })
   }
 
   function handleLogOutClick() {

@@ -1,5 +1,5 @@
 export const config = {
-  url: 'https://api.mesto.project.nomoredomains.work/',
+  url: 'http://localhost:3000/',
   headers: ()=> {
     const jwt = localStorage.getItem('jwt');
     return {
@@ -12,4 +12,7 @@ export const config = {
 export const tooltip = {
   message: 'Вы успешно зарегистрировались!',
   messageErr: 'Что-то пошло не так!Попробуйте ещё раз',
+  messageLoginErr: `Введены неправильные данные`,
 };
+
+//'https://api.mesto.project.nomoredomains.work/'
