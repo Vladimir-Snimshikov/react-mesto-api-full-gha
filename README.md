@@ -25,7 +25,7 @@ Backend:
 
 - Nodejs,
 - Express,
-- MongoDs,
+- Mongodb,
 - Централизованная обработка ошибок,
 - express-rate-limit,
 - celebrate
